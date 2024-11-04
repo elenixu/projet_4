@@ -14,21 +14,19 @@
   <body>
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
+        <img alt="logo" src="Logo.png" width="auto" height="auto" />
+      </div>
+      <div class="main-navbar">
+        <a href="#" class="active"><span>Accueil</span></a>
+        <a href="#"><span>Détails de l'évènement</span></a>
+        <a href="#"><span>À propos</span></a>
+        <a href="#"><span>Contact</span></a>
+        <a href="#"><span>Évènements passés</span></a>
+        <a href="#" class="icon">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
     </div>
-    <div class="main-navbar">
-      
-      <a href="#" class="active"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
-      <a href="#"><span>À propos</span></a>
-      <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
-    </div>
-  </div>
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -60,6 +58,7 @@
               name="reserve"
               action="index.html"
               method="get"
+              novalidate
               onsubmit="return validate();"
             >
               <div
@@ -70,7 +69,8 @@
                   type="text"
                   id="first"
                   name="first"
-                 
+                  minlength="2"
+                  
                 /><br>
               </div>
               <div
@@ -81,7 +81,7 @@
                   type="text"
                   id="last"
                   name="last"
-                 
+                  minlength="2"
                 /><br>
               </div>
               <div
@@ -210,6 +210,28 @@
           </div>
         </div>
       </div>
+
+      <!-- New Modal Structure -->
+<div class="bground" id="secondModal" style="display: block;">
+  <div class="content">
+      <div class="hero-section">
+        
+        <div class="hero-content">
+          <span class="close"></span>
+          <p class="hero-text">
+            Merci pour votre inscription
+          </p>
+        <button class="btn-signup modal-btn">
+          Fermer
+        </button>
+      </div>
+    </button>
+      </div>
+  </div>
+</div>
+
+
+
     </main>
     <footer>
       <p class="copyrights">
