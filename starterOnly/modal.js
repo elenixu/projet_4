@@ -12,35 +12,50 @@ function editNav() {
 let mainNavbar = document.querySelector(".main-navbar");
 mainNavbar.addEventListener("click", editNav);
 
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
+const modalbg2 = document.querySelector(".bground2");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const closeBtn = document.querySelector(".close"); // Close modal
+const closeBtn = document.querySelector(".close"); 
+const closeBtn2 = document.querySelector(".close2");
+const closeBtnFermer = document.querySelector(".modal-btn2"); // Directly select single element
 
-// Launch modal event
+// Launch modal event for the first modal
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// Launch modal form
+// Launch first modal
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// Close modal event listener
+// Close modal event listener for first modal
 closeBtn.addEventListener("click", closeModal);
 
-// Close modal function
+// Close first modal function
 function closeModal() {
   modalbg.style.display = "none";
 }
 
+// Launch second modal
+function launchModal2() {
+  modalbg2.style.display = "block";
+}
+
+// Close modal event listeners for the second modal
+closeBtn2.addEventListener("click", closeModal2);
+closeBtnFermer.addEventListener("click", closeModal2); // Use addEventListener directly for a single element
+
+// Close second modal function
+function closeModal2() {
+  modalbg2.style.display = "none";
+}
 
 
 // Validate function to display in-form error messages
 function validate() {
-  let isValid = true; // Flag to check if the form is valid
+  let isValid = true;
 
-  // Helper function to show error message below an input
+  //function to show error message below an input
   function showError(inputId, message) {
     const input = document.getElementById(inputId);
     const formData = input.closest(".formData");
@@ -49,7 +64,7 @@ function validate() {
     isValid = false; // Set form as invalid
   }
 
-  // Helper function to clear the error message
+  // And function to clear the error message
   function clearError(inputId) {
     const input = document.getElementById(inputId);
     const formData = input.closest(".formData");
@@ -71,7 +86,7 @@ function validate() {
     clearError("first");
   }
 
-  // Last Name Validation
+  // Last Name Validation 
   if (lastName.length < 2) {
     showError("last", "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
   } else {
@@ -122,13 +137,19 @@ function validate() {
     clearError("checkbox1");
   }
 
-  return isValid; // Returns true if form is valid, false otherwise
+  return isValid; 
 }
 
 // Add submit event listener to form
 document.getElementById("myForm").addEventListener("submit", function(event) {
-  // Prevent form submission if validation fails
+  event.preventDefault(); // Prevents default form submission
+
   if (!validate()) {
-    event.preventDefault(); // Prevents form from submitting
+    // Validation failed; keep the first modal open and stop form submission
+    event.preventDefault(); 
+  } else {
+    // Validation passed; close the first modal and open the second one
+    closeModal(); // Close the first modal if open
+    launchModal2(); // Launch the second modal
   }
 });
