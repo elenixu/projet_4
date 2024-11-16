@@ -80,18 +80,19 @@ function validate() {
   let birthdate = document.getElementById("birthdate").value;
 
   // First Name Validation
-  if (firstName.length < 2) {
-    showError("first", "Veuillez entrer 2 caractères ou plus pour le champ du Prénom.");
-  } else {
-    clearError("first");
-  }
+  // First Name Validation
+if (firstName.length < 2 || /\d/.test(firstName)) {
+  showError("first", "Veuillez entrer 2 caractères ou plus pour le champ du Prénom sans chiffres.");
+} else {
+  clearError("first");
+}
 
-  // Last Name Validation 
-  if (lastName.length < 2) {
-    showError("last", "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
-  } else {
-    clearError("last");
-  }
+// Last Name Validation
+if (lastName.length < 2 || /\d/.test(lastName)) {
+  showError("last", "Veuillez entrer 2 caractères ou plus pour le champ du nom sans chiffres.");
+} else {
+  clearError("last");
+}
 
   // Email Validation with regex pattern
   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
